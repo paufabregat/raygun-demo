@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+
+    <title>React App</title>
+
+    <script type="text/javascript">
+        // - fetch the raygun4js script asynchronously,
+        // - catch errors thrown on the page while load
+        // - send errors to Raygun when page is ready
+        !function(a,b,c,d,e,f,g,h){a.RaygunObject=e,a[e]=a[e]||function(){
+        (a[e].o=a[e].o||[]).push(arguments)},f=b.createElement(c),g=b.getElementsByTagName(c)[0],
+        f.async=1,f.src=d,g.parentNode.insertBefore(f,g),h=a.onerror,a.onerror=function(b,c,d,f,g){
+        h&&h(b,c,d,f,g),g||(g=new Error(b)),a[e].q=a[e].q||[],a[e].q.push({
+        e:g})}}(window,document,"script","//cdn.raygun.io/raygun4js/raygun.min.js","rg4js");
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <div>
+      <script type="text/javascript">
+        // - set on startup or elsehwere in the app
+        rg4js('apiKey', 'your-api-key');
+        // - automatically catch and send unhandled errors
+        rg4js('enableCrashReporting', true);
+        rg4js('withTags', ['my-dashboard']);
+        rg4js('options', {
+          ignoreAjaxAbort: true,
+          debugMode: true,
+          // excludedHostnames: ['localhost'], //could be used to not so send error while dev
+        });
+        </script>
+    </div>
+  </body>
+</html>
